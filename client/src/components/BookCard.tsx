@@ -61,15 +61,15 @@ export default function BookCard({ book, onClick }: BookCardProps) {
 
           {/* Format badge */}
           {book.format && (
-            <div className="absolute top-2 right-2 z-30 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-white uppercase rounded shadow-md bg-accent">
+            <div className="absolute top-2 right-2 z-30 h-5 px-1.5 font-mono text-[10px] font-semibold text-white uppercase rounded shadow-md bg-accent flex items-center">
               {book.format}
             </div>
           )}
 
           {/* Local badge */}
           {book.isLocal && (
-            <div className="absolute top-2 left-2 z-30 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-white uppercase rounded shadow-md bg-green-500 flex items-center gap-1" title="Available Locally">
-              <DownloadCloud size={10} />
+            <div className="absolute top-2 left-2 z-30 h-5 px-1.5 font-mono font-semibold text-white uppercase rounded shadow-md bg-emerald-500 flex items-center justify-center" title="Available Locally">
+              <DownloadCloud size={14} strokeWidth={2.5} />
             </div>
           )}
 

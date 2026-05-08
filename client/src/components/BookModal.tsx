@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { X, Download, FileText, Calendar, Globe, HardDrive, Loader2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, Download, FileText, Calendar, Globe, HardDrive, Loader2, ChevronLeft, ChevronRight, DownloadCloud } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 import { Book } from '../types';
@@ -388,10 +388,15 @@ export default function BookModal({ book, onClose, onBookSelect }: BookModalProp
             <div id="modal-scroll-area" className="flex flex-col flex-1 min-h-0 px-6 pt-5 pb-6 overflow-y-auto sm:pt-6 scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent">
 
               {/* Title */}
-              <div className="pr-10 mb-2 shrink-0">
+              <div className="pr-10 mb-2 shrink-0 flex items-start gap-3">
                 <h2 className="text-xl font-semibold leading-snug tracking-tight pt-0.5 text-gray-900 sm:text-2xl">
                   {currentBook.title}
                 </h2>
+                {currentBook.isLocal && (
+                  <div className="flex items-center justify-center gap-1.5 bg-emerald-100 text-emerald-800 px-3 py-1 mt-0.5 rounded-lg text-sm sm:text-base font-bold uppercase tracking-wider shrink-0" title="Available Locally">
+                    <DownloadCloud size={18} strokeWidth={2.5} /> LOCAL
+                  </div>
+                )}
               </div>
 
               {/* Author */}
