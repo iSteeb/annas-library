@@ -65,7 +65,8 @@ async function startServer() {
   app.get('/opensearch.xml', route('application/opensearchdescription+xml', generateOpenSearch));
 
   // Serve the public local files (cached books)
-  app.use('/annas', express.static('/var/www/books/public/annas'));
+  const LOCAL_DIR = process.env.LOCAL_BOOKS_DIR || path.join(require('os').homedir(), 'annas-books');
+  app.use('/annas', express.static(LOCAL_DIR));
 
   if (!isDev) {
     app.use(express.static(clientBuildPath));
