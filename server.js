@@ -64,6 +64,9 @@ async function startServer() {
   app.get('/download/:md5', handleDownload);
   app.get('/opensearch.xml', route('application/opensearchdescription+xml', generateOpenSearch));
 
+  // Serve the public local files (cached books)
+  app.use('/annas', express.static('/var/www/books/public/annas'));
+
   if (!isDev) {
     app.use(express.static(clientBuildPath));
   }

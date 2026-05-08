@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 // import { ChevronRight } from 'lucide-react';
+import { DownloadCloud } from 'lucide-react';
 
 interface Book {
   id: string;
@@ -13,6 +14,7 @@ interface Book {
   format?: string;
   size?: string;
   pages?: number;
+  isLocal?: boolean;
 }
 
 interface BookCardProps {
@@ -61,6 +63,13 @@ export default function BookCard({ book, onClick }: BookCardProps) {
           {book.format && (
             <div className="absolute top-2 right-2 z-30 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-white uppercase rounded shadow-md bg-accent">
               {book.format}
+            </div>
+          )}
+
+          {/* Local badge */}
+          {book.isLocal && (
+            <div className="absolute top-2 left-2 z-30 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-white uppercase rounded shadow-md bg-green-500 flex items-center gap-1" title="Available Locally">
+              <DownloadCloud size={10} />
             </div>
           )}
 

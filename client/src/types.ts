@@ -14,6 +14,7 @@ export interface Book {
   description?: string;
   zlibId?: number;
   zlibHash?: string;
+  isLocal?: boolean;
 }
 
 export interface Filters {
