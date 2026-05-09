@@ -9,7 +9,7 @@ const { handleSearch, handlePopular, handleDownload, getBaseUrl, OPDS_CONTENT_TY
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
+const HOST = process.env.HOST || "127.0.0.1";
 
 const { createServer: createViteServer } = require('vite');
 
@@ -65,7 +65,8 @@ async function startServer() {
   app.get('/opensearch.xml', route('application/opensearchdescription+xml', generateOpenSearch));
 
   // Serve the public local files (cached books)
-  app.use('/annas', express.static('/var/www/books/public/annas'));
+  const LOCAL_DIR = process.env.LOCAL_BOOKS_DIR || path.join(require('os').homedir(), 'annas-books');
+  app.use('/annas', express.static(LOCAL_DIR));
 
   if (!isDev) {
     app.use(express.static(clientBuildPath));
@@ -93,8 +94,8 @@ async function startServer() {
   });
 
 
-  app.listen(PORT, () => {
-    console.log(`\n✨ OPDS Server (${isDev ? 'Development' : 'Production'}) started on http://localhost:${PORT}`);
+  app.listen(PORT, HOST, () => {
+    console.log(`\n✨ OPDS Server (${isDev ? 'Development' : 'Production'}) started on http://${HOST}:${PORT}`);
   });
 }
 
